@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <script src="container-bets/bet/__button/bet__button.js"></script>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="header-text">
+        <h2>Hello, here you can earn some money!</h2>
+        <h2>Select the bet to know more!</h2>
+      </div>
+      <div class="container-bets">
+        <div class="bet">
+          <button class="bet__button bet__image-small bet_active" onclick="selected_btn('small')">
+          </button>
+          <p class="bet__text main-text">Small bet</p>
+        </div>
+
+        <div class="bet">
+          <button class="bet__button bet__image-medium" onclick="selected_btn('medium')">
+          </button>
+          <p class="bet__text main-text">Medium bet</p>
+        </div>
+
+        <div class="bet">
+          <button class="bet__button bet__image-large" onclick="selected_btn('large')">
+          </button>
+          <p class="bet__text main-text">Large bet</p>
+        </div>
+
+        <div class="bet">
+
+          <button class="bet__button bet__image-extralarge" onclick="selected_btn('extralarge')">
+          </button>
+          <p class="bet__text main-text">Extralarge bet</p>
+        </div>
+      </div>
+
+
+
+      <div class="addit-info">
+        <div class="header-text">
+          <h3>You selected <span class="addit-info__header"></span> bet!</h3>
+        </div>
+        <div class="main-text addit-info__text">
+          Here you can read some information about this bet.
+        </div>
+        <div class="main-btn addit-info__btn">
+          Participate!
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

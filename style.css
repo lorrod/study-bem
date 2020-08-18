@@ -1,0 +1,15 @@
+@import url(./container/container.css);
+
+@import url(./container-bets/container-bets.css);
+@import url(./container-bets/bet/bet.css);
+@import url(./container-bets/bet/__image/bet__image.css);
+@import url(./container-bets/bet/__button/bet__button.css);
+@import url(./container-bets/bet/__text/bet__text.css);
+
+
+
+@import url(./addit-info/addit-info.css);
+
+@import url(./header-text/header-text.css);
+@import url(./main-btn/main-btn.css);
+@import url(./main-text/main-text.css);

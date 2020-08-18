@@ -1,0 +1,14 @@
+
+
+.bet__button {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  background-size: 70%; /* To fill the dimensions of container (button), or */
+  background-position: center;
+  border-radius: 50%;
+}
+
+.bet_active {
+  border: 10px double brown;
+}
