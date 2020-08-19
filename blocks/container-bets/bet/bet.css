@@ -8,3 +8,7 @@
   margin: 25px;
   text-align: center;
 }
+
+.bet_active {
+  border: 10px double brown;
+}

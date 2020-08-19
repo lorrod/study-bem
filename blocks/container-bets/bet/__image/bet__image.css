@@ -1,0 +1,18 @@
+
+
+.bet__image-small {
+  background: url('pics/bet__image-small.jpg') no-repeat top left;
+}
+
+.bet__image-medium {
+  background: url('pics/bet__image-medium.jpg') no-repeat top left;
+}
+
+
+.bet__image-large {
+  background: url('pics/bet__image-large.jpg') no-repeat top left;
+}
+
+.bet__image-extralarge {
+  background: url('pics/bet__image-extralarge.jpg') no-repeat top left;
+}
