@@ -1,4 +1,13 @@
-node_modules/
-.DS_Store
-npm-debug.log
 package-lock.json
+package.json
+
+.DS_Store
+Thumbs.db
+
+# Вспомогательные файлы
+*.log*
+node_modules/
+reports/
+
+# Папка с собранными файлами проекта
+# build/

@@ -1,0 +1,11 @@
+@import "../mixins/font-style";
+
+.footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-height: 80px;
+
+    @include text-format();
+}

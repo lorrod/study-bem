@@ -1,0 +1,15 @@
+
+.bet {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 25px;
+  text-align: center;
+  @include text-format($font-size: 20px)
+}
+
+
+.bet--active {
+  border: 10px double brown;
+}

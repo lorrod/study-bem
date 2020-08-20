@@ -1,0 +1,13 @@
+
+.additional-info {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+
+  > .text {
+    max-width: 70%;
+  }
+}

@@ -5,6 +5,7 @@ const concat = require('gulp-concat');
 // используем для правильного порядка
 const decl = [
   'header-text',
+  'bet--active',
   'main-btn',
   'main-text',
   'addit-info',

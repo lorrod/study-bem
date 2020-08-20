@@ -1,0 +1,14 @@
+@import "../../mixins/font-style";
+
+.main-btn {
+  border-radius: 8px;
+  background-color: #51756e;
+  border: 2px solid brown;
+  width: fit-content;
+  text-align: center;
+  @include text-format($font-size: 25px)
+}
+
+.main-btn:hover {
+  background-color: brown;
+}

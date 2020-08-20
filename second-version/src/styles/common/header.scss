@@ -1,0 +1,11 @@
+@import "../mixins/font-style";
+
+.header {
+    text-align: center;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    max-height: 100px;
+
+    @include text-format;
+}

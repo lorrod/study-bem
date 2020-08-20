@@ -1,0 +1,7 @@
+
+
+@mixin text-format($font: Courier, $font-color: white, $font-size: 30px) {
+    color: $font-color;
+    font-family: $font;
+    font-size: $font-size;
+}
