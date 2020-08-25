@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="v-cart">
     <div class="v-cart__list">
-      <vCatalogItem class="v-cart__item"
+      <vCartItem class="v-cart__item"
         v-for="product in this.$store.state.cart"
         :key='product.article'
         :product_data='product'
@@ -13,9 +13,11 @@
       There is no items in cart.
       Add items <router-link to="/">here</router-link>
     </div>
-    <button class="v-cart__total"
-            type="button"
-            name="button">Pay: {{ cartTotalCost }}</button>
+    <div data-app>
+      <vCartAddressModal
+        @send-usr-data="receiveUsrData"
+        :totalMoney="cartTotalCost"/>
+    </div>
   </div>
 </template>
 
@@ -23,13 +25,15 @@
 
 
 <script>
-import vCatalogItem from './v-catalog-item.vue'
+import vCartItem from './v-cart-item.vue'
+import vCartAddressModal from './v-cart-address-modal.vue'
 import { mapMutations } from 'vuex'
 
 export default {
   name: 'v-cart',
   components: {
-    vCatalogItem
+    vCartItem,
+    vCartAddressModal
   },
   computed: {
     cartTotalCost() {
@@ -47,6 +51,11 @@ export default {
     },
     deleteChild(data) {
       this.DELETE_FROM_CART(data)
+    },
+    receiveUsrData(data) {
+      console.log("here");
+      console.log(this.cartTotalCost);
+      console.log(data);
     }
   }
 
@@ -61,27 +70,6 @@ export default {
     flex-direction: column;
     align-items: center;
     margin-top: $margin;
-  }
-  &__total {
-    position: fixed;
-    bottom: 0;
-    right:0;
-    left: 0;
-    width: 100%;
-    padding: $padding $padding;
-    display: flex;
-    justify-content: center;
-    background: green;
-    color: white;
-    font-size: 25px;
-  }
-  &__item {
-    display: flex;
-    flex-direction: column;
-    max-height: 400px;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 90%;
   }
 }
 </style>

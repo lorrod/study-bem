@@ -1,4 +1,9 @@
 # study-vue
+## You need to start watching json-server for db.json
+```
+json-server --watch db.json
+```
+
 
 ## Project setup
 ```

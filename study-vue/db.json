@@ -6,15 +6,17 @@
       "size": "50(RU)",
       "price": 200,
       "article": "T1",
-      "left": 200
+      "left": 200,
+      "total": 200
     },
     {
       "image": "2.jpg",
-      "name": "MCQ AL. MCQUEEN",
+      "name": "AL. MCQUEEN",
       "size": "S (INT)",
       "price": 100,
       "article": "T2",
-      "left": 150
+      "left": 15,
+      "total": 150
     },
     {
       "image": "3.jpg",
@@ -22,7 +24,8 @@
       "size": "54(RU)",
       "price": 150,
       "article": "T3",
-      "left": 150
+      "left": 150,
+      "total": 150
     }
   ]
 }

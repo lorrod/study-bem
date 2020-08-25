@@ -18,38 +18,40 @@ let store = new Vuex.Store({
       ADD_TO_CART(state , payload) {
         var elem = state.cart.filter( item => payload.article === item.article);
 
-        state.count_items++;
-
         if (elem.length == 0) {
           payload.count = 1;
           state.cart.push(payload);
         } else {
-          payload.count++;
-          console.log(payload);
-        }
-
-        var others = state.cart.filter( item => payload.article !== item.article);
-        others.push(payload);
-        state.cart = others;
-
-      },
+          if (elem[0].left <= elem[0].count) {
+            return
+            }
+            for (var i = 0; i<state.cart.length; i++) {
+              if (state.cart[i].article === payload.article) {
+                console.log(state.cart[i]);
+                state.cart[i].count++;
+                break;
+              }
+            }
+          }
+          state.count_items++;
+          state.cart = state.cart.sort();
+        },
       DELETE_FROM_CART(state, payload) {
         var elem = state.cart.filter( item => payload.article === item.article);
-        console.log(elem);
         state.count_items--;
 
         if (elem[0].count > 1) {
-          payload.count--;
-          console.log("MINUSSSS");
+          for (var i = 0; i<state.cart.length; i++) {
+            if (state.cart[i].article === payload.article) {
+              state.cart[i].count--;
+              break;
+            }
+          }
         } else {
           state.cart = state.cart.filter( item => payload.article !== item.article);
           return
         }
-
-        var others = state.cart.filter( item => payload.article !== item.article);
-        others.push(payload);
-        state.cart = others;
-        //state.cart = state.cart.filter( item => payload.article !== item.article);
+        state.cart = state.cart.sort();
       }
     },//синхронно
     actions: {

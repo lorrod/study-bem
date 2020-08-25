@@ -4,6 +4,7 @@
     <img class="v-catalog-item__image" :src="require(`../assets/img/${product_data.image}`)" alt="image-logo">
     <p class="v-catalog-item__name">{{ product_data.name }}</p>
     <p class="v-catalog-item__price">Price: {{ product_data.price }}</p>
+    <p class="v-catalog-item__price">Availble: {{ product_data.left }}</p>
     <v-btn fab dark color="indigo"
             class="v-catalog-item__add_to_cart btn"
             @click="toParent('remove-article')"
