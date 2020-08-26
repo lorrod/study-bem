@@ -2,7 +2,9 @@
   "products": [
     {
       "image": "1.jpg",
+      "images": ["1.jpg", "2.jpg", "3.jpg"],
       "name": "DSQUARED2",
+      "description": "Here will be information about this item. Example: 'condition - new, never worn, box slightly torn and etc...'",
       "size": "50(RU)",
       "price": 200,
       "article": "T1",
@@ -11,7 +13,9 @@
     },
     {
       "image": "2.jpg",
+      "images": ["1.jpg", "2.jpg", "3.jpg"],
       "name": "AL. MCQUEEN",
+      "description": "Here will be information about this item. Example: 'condition - new, never worn, box slightly torn and etc...'",
       "size": "S (INT)",
       "price": 100,
       "article": "T2",
@@ -20,7 +24,9 @@
     },
     {
       "image": "3.jpg",
+      "images": ["1.jpg", "2.jpg", "3.jpg"],
       "name": "DSQUARED2",
+      "description": "Here will be information about this item. Example: 'condition - new, never worn, box slightly torn and etc...'",
       "size": "54(RU)",
       "price": 150,
       "article": "T3",

@@ -66,6 +66,21 @@ let store = new Vuex.Store({
           .catch((error) => {
             console.log(error);
           })
+      },
+      GET_PRODUCT_FROM_API(state , id){
+        var elem = state.cart = this.state.cart.filter( item => id === item.article);
+        if (elem.length != 0) {
+            return elem[0]
+        }
+        return axios("http://localhost:3000/products?article="+id,{
+          method: "GET"
+        })
+          .then((product) => {
+            return product.data[0];
+          })
+          .catch((error) => {
+            console.log(error);
+          })
       }
     },//асинхронно
     getters: {//получение из state значений

@@ -2,7 +2,11 @@
 
   <div class="v-cart-item">
     <div class="v-cart-item__image-container">
-      <img class="v-cart-item__image" :src="require(`../assets/img/${product_data.image}`)" alt="image-logo">
+      <router-link
+        style="text-decoration: none; color: inherit;"
+        :to="'/item/' + product_data.article">
+        <img class="v-cart-item__image" :src="require(`@/assets/img/${product_data.image}`)" alt="image-logo">
+      </router-link>
     </div>
     <div class="v-cart-item__info">
       <p class="info__name">{{ product_data.name }}</p>

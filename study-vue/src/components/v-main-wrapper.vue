@@ -7,7 +7,7 @@
 
 <script>
 
-  import vCatalog from './v-catalog.vue'
+  import vCatalog from './v-catalog/v-catalog.vue'
 
 
   export default {

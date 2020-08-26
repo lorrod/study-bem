@@ -12,16 +12,10 @@ export default {
   name: 'App',
   data() {
     return {
-      todos: ['Work', 'Study', 'Breakfast']
     }
   },
   components: {
     vMainWrapper
-  },
-  methods: {
-    deleteTodo(i) {
-      this.todos.splice(i, 1)
-    }
   }
 }
 </script>
