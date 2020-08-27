@@ -3,11 +3,15 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/cart">Cart: {{ this.$store.state.count_items }}</router-link> 
+      <router-link to="/cart">Cart: {{ this.$store.state.count_items }}</router-link> |
+      <router-link to="/auth">Auth</router-link>
     </div>
     <router-view />
   </div>
 </template>
+
+
+
 
 <style lang="scss">
 #app {

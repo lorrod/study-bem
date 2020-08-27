@@ -9,9 +9,29 @@ let store = new Vuex.Store({
       products: [],
       cart: [],
       count_items: 0,
-      error: ''
+      error: '',
+      token: localStorage.getItem("user-token") || "",
+      status: ''
     },
     mutations: {
+      REGISTER_REQUEST(state) {
+        state.status = "loading";
+      },
+      AUTH_REQUEST(state) {
+        state.status = "loading";
+      },
+      AUTH_SUCCESS(state,resp) {
+        state.status = "success";
+        state.token = resp.data.token;
+        //state.hasLoadedOnce = true;
+      },
+      AUTH_ERROR(state) {
+        state.status = "error";
+        //state.hasLoadedOnce = true;
+      },
+      AUTH_LOGOUT(state) {
+        state.token = "";
+      },
       SET_PRODUCTS_TO_STATE(state , products )  {
         state.products = products;
       },
@@ -55,6 +75,57 @@ let store = new Vuex.Store({
       }
     },//синхронно
     actions: {
+      REGISTER_REQUEST({ commit, dispatch }, user) {
+        return new Promise((resolve, reject) => {
+          commit("REGISTER_REQUEST");
+          axios({url: 'http://127.0.0.1:5000/register', data: user, method: 'POST' })
+            .then(resp => {
+              console.log(resp);
+              console.log(resp.data.token);
+              localStorage.setItem("user-token", resp.data.token);
+              // Here set the header of your ajax library to the token value.
+              // example with axios
+              // axios.defaults.headers.common['Authorization'] = resp.token
+              commit("AUTH_SUCCESS", resp);
+              dispatch("USER_REQUEST");
+              resolve(resp);
+            })
+            .catch(err => {
+              commit("AUTH_ERROR", err);
+              localStorage.removeItem("user-token");
+              reject(err);
+            });
+        });
+      },
+      AUTH_REQUEST({ commit, dispatch }, user) {
+        return new Promise((resolve, reject) => {
+          commit("AUTH_REQUEST");
+          axios({url: 'http://127.0.0.1:5000/login', data: user, method: 'POST' })
+            .then(resp => {
+              console.log(resp);
+              console.log(resp.data.token);
+              localStorage.setItem("user-token", resp.data.token);
+              // Here set the header of your ajax library to the token value.
+              // example with axios
+              // axios.defaults.headers.common['Authorization'] = resp.token
+              commit("AUTH_SUCCESS", resp);
+              dispatch("USER_REQUEST");
+              resolve(resp);
+            })
+            .catch(err => {
+              commit("AUTH_ERROR", err);
+              localStorage.removeItem("user-token");
+              reject(err);
+            });
+        });
+      },
+      AUTH_LOGOUT({ commit }) {
+        return new Promise(resolve => {
+          commit("AUTH_LOGOUT");
+          localStorage.removeItem("user-token");
+          resolve();
+        });
+      },
       GET_PRODUCTS_FROM_API({commit}){
         return axios("http://localhost:3000/products",{
           method: "GET"
@@ -86,7 +157,9 @@ let store = new Vuex.Store({
     getters: {//получение из state значений
       PRODUCTS(state) {
         return state.products
-      }
+      },
+        isAuthenticated: state => !!state.token,
+        authStatus: state => state.status
     }
   });
 

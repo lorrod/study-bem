@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Cart from "../views/Cart.vue";
 import Item from "../views/Item.vue";
+import Auth from "../views/Auth.vue";
 
 Vue.use(VueRouter);
 
@@ -22,6 +23,11 @@ const routes = [
     name: "Item",
     component: Item,
     props: true
+  },
+  {
+    path: "/Auth",
+    name: "Auth",
+    component: Auth
   }
 ];
 
