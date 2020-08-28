@@ -15,9 +15,11 @@
     </div>
     <div data-app>
       <vCartAddressModal
+        :showAddressModal="showAddressModal"
         @send-usr-data="receiveUsrData"
         :totalMoney="cartTotalCost"/>
     </div>
+
   </div>
 </template>
 
@@ -27,15 +29,21 @@
 <script>
 import vCartItem from './v-cart-item.vue'
 import vCartAddressModal from './v-cart-address-modal.vue'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 
 export default {
   name: 'v-cart',
+  data() {
+    return {
+      showAddressModal: false
+    }
+  },
   components: {
     vCartItem,
     vCartAddressModal
   },
   computed: {
+    ...mapGetters([ "isAuthenticated" ]),
     cartTotalCost() {
       var result = 0;
       for (let item of this.$store.state.cart) {
@@ -53,12 +61,10 @@ export default {
       this.DELETE_FROM_CART(data)
     },
     receiveUsrData(data) {
-      console.log("here");
       console.log(this.cartTotalCost);
       console.log(data);
     }
   }
-
 }
 </script>
 

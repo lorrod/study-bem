@@ -1,7 +1,7 @@
 <template>
   <div class="v-cart-address-modal">
     <v-row justify="center">
-      <v-dialog v-model="dialog" persistent max-width="600px">
+      <v-dialog v-model="showAddressModal" persistent max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <button
             class="v-cart-address-modal__open-btn"
@@ -59,7 +59,7 @@
             <v-btn
               color="blue darken-1"
               text
-              @click="dialog = false">Close</v-btn>
+              @click="showAddressModal = false">Close</v-btn>
             <v-btn
               @click="toParent('send-usr-data')"
               text>Pay</v-btn>
@@ -75,7 +75,7 @@
     name: 'v-cart-address-modal',
     data() {
       return {
-          dialog: false,
+          showAddressModal: false,
           fName: '',
           lName: '',
           nName: '',
@@ -103,7 +103,7 @@
           usrData['nName'] = nName;
           usrData['eMail'] = eMail;
           usrData['Address'] = Address;
-          this.dialog = false;
+          this.showAddressModal = false;
           this.$emit(method, usrData)
         } else {
           this.requiredhint = true;

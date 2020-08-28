@@ -11,6 +11,7 @@ let store = new Vuex.Store({
       count_items: 0,
       error: '',
       token: localStorage.getItem("user-token") || "",
+      login: localStorage.getItem("username") || "none",
       status: ''
     },
     mutations: {
@@ -83,9 +84,8 @@ let store = new Vuex.Store({
               console.log(resp);
               console.log(resp.data.token);
               localStorage.setItem("user-token", resp.data.token);
-              // Here set the header of your ajax library to the token value.
-              // example with axios
-              // axios.defaults.headers.common['Authorization'] = resp.token
+              localStorage.setItem("username", user.username);
+              axios.defaults.headers.common['Authorization'] = "Bearer "+resp.data.token;
               commit("AUTH_SUCCESS", resp);
               dispatch("USER_REQUEST");
               resolve(resp);
@@ -105,9 +105,8 @@ let store = new Vuex.Store({
               console.log(resp);
               console.log(resp.data.token);
               localStorage.setItem("user-token", resp.data.token);
-              // Here set the header of your ajax library to the token value.
-              // example with axios
-              // axios.defaults.headers.common['Authorization'] = resp.token
+              localStorage.setItem("username", user.username);
+              axios.defaults.headers.common['Authorization'] = "Bearer "+resp.data.token;
               commit("AUTH_SUCCESS", resp);
               dispatch("USER_REQUEST");
               resolve(resp);
@@ -123,6 +122,7 @@ let store = new Vuex.Store({
         return new Promise(resolve => {
           commit("AUTH_LOGOUT");
           localStorage.removeItem("user-token");
+          localStorage.removeItem("username");
           resolve();
         });
       },
@@ -159,6 +159,7 @@ let store = new Vuex.Store({
         return state.products
       },
         isAuthenticated: state => !!state.token,
+        getLogin: state => state.login,
         authStatus: state => state.status
     }
   });

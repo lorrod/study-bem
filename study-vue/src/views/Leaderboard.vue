@@ -1,6 +1,6 @@
 <template lang="html">
-  <div class="Auth">
-    <vAuth />
+  <div class="Cabinet">
+    <h2>Here you could see users that bought ticket and how much!</h2>
   </div>
 </template>
 
@@ -8,12 +8,11 @@
 
 
 <script>
-import vAuth from '../components/v-auth/v-auth-login.vue'
+
 
 export default {
   name: "Auth",
   components: {
-    vAuth
   }
 }
 

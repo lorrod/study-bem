@@ -1,37 +1,30 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/cart">Cart: {{ this.$store.state.count_items }}</router-link> |
-      <router-link to="/auth">Auth</router-link>
-    </div>
-    <router-view />
+  <div class="app">
+    <vHeader />
+    <router-view class="app__content"/>
   </div>
 </template>
 
 
+<script>
+import vHeader from "./components/v-header/v-header.vue";
 
+export default {
+  components: {
+    vHeader,
+  },
+  name: "app"
+};
+</script>
 
 <style lang="scss">
-#app {
+.app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  &__content {
+      text-align: center;
   }
 }
 </style>

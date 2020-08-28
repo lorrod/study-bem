@@ -1,7 +1,7 @@
 <template>
   <div class='v-auth-login-modal'>
     <v-row justify="center">
-      <v-dialog v-model="dialog" persistent max-width="600px">
+      <v-dialog v-model="openAuthModal" persistent max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <button
             class="v-auth-login-modal__open-btn"
@@ -62,7 +62,7 @@ export default {
   name: "login",
   data() {
     return {
-      dialog: false,
+      openAuthModal: false,
       username: "dogo",
       password: "dogy"
     };

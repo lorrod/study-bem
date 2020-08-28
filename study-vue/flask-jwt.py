@@ -56,11 +56,13 @@ def register():
 
 # Protect a view with jwt_required, which requires a valid access token
 # in the request to access.
-@app.route('/protected', methods=['GET'])
+@app.route('/products', methods=['GET'])
 @jwt_required
-def protected():
+def products():
     # Access the identity of the current user with get_jwt_identity
     current_user = get_jwt_identity()
+    print("logged in as")
+    print(current_user)
     return jsonify(logged_in_as=current_user), 200
 
 

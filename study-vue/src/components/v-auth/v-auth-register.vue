@@ -1,5 +1,21 @@
 <template>
-  <div class='v-auth-login-modal'>
+  <div class='v-auth-register-modal'>
+    <v-dialog
+          class="v-auth-register-modal__body"
+          v-model="modalRegister"
+          dark
+          width="500">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          class="v-auth-login-modal__btn"
+          color="primary"
+          v-bind="attrs"
+          dark
+          v-on="on"
+        >
+          {{ button_name }}
+        </v-btn>
+      </template>
 
     <v-card>
       <v-card-title>
@@ -42,35 +58,42 @@
             <v-btn
               type="submit"
               text>Register</v-btn>
-            <v-btn
-              @click="switchTo('loginPage')"
-              text>Already registered?</v-btn>
           </v-card-actions>
         </form>
         </v-card-text>
       </v-card>
-    </div>
+    </v-dialog>
+  </div>
 </template>
 
 
 <script>
-//import { AUTH_REQUEST } from "actions/auth";
+//import vLogin from "./v-auth-login";
 
 export default {
   name: "vRegister",
   data() {
     return {
+      modalRegister: false,
       username: "",
       password: "",
       rep_password: "",
       wrong_msg: ""
     };
   },
+  props: {
+    button_name: {
+      type: String,
+      default() {
+        return "Register"
+      }
+    }
+  },
   methods: {
     register: function() {
       const { username, password } = this;
       this.$store.dispatch("REGISTER_REQUEST", { username, password }).then(() => {
-        this.$router.push("/");
+        this.modalRegister = false;
       });
     },
     switchTo(page) {
@@ -94,12 +117,13 @@ export default {
 
 <style lang="scss">
   .v-auth-login-modal {
-    width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    &__wrong-msg {
-      color: red;
-      font-size: 12px;
+      &__btn {
+        margin-right:$header-margin;
+        margin-left:$header-margin;
+      }
+      &__wrong-msg {
+        color: red;
+        font-size: 12px;
+      }
     }
-  }
 </style>
