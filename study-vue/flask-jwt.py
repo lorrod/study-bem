@@ -60,6 +60,8 @@ def register():
 @jwt_required
 def products():
     # Access the identity of the current user with get_jwt_identity
+    by_article = request.args.get('article')
+    print(by_article)
     current_user = get_jwt_identity()
     print("logged in as")
     print(current_user)

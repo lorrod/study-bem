@@ -42,6 +42,7 @@
                 ></v-text-field>
               </v-col>
             </v-row>
+            <small class="v-auth-login-modal__wrong-msg">{{ wrong_msg }}</small>
           </v-container>
           <v-card-actions>
             <v-btn
@@ -65,7 +66,8 @@ export default {
     return {
       modalLogin: false,
       username: "",
-      password: ""
+      password: "",
+      wrong_msg: ""
     };
   },
   props: {
@@ -81,6 +83,8 @@ export default {
       const { username, password } = this;
       this.$store.dispatch("AUTH_REQUEST", { username, password }).then(() => {
         this.modalLogin = false;
+      }).catch(error => {
+        this.wrong_msg = error.data.msg
       });
     }
   }
@@ -93,6 +97,10 @@ export default {
     &__btn {
       margin-right:$header-margin;
       margin-left:$header-margin;
+    }
+    &__wrong-msg {
+      color: red;
+      font-size: 12px;
     }
   }
 </style>

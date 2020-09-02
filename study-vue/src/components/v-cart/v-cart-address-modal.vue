@@ -13,42 +13,44 @@
         </template>
         <v-card>
           <v-card-title>
-            <span class="headline">Participant information</span>
+            <span class="headline">Your Shipping Address</span>
           </v-card-title>
           <v-card-text>
             <v-container>
               <v-row>
                 <v-col cols="12" sm="6" md="4">
-                  <v-text-field label="Legal first name"
+                  <v-text-field label="Name"
+                                hint="First & Last Name"
                                 required
-                                v-model="fName"
+                                v-model="name"
                                 ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
                   <v-text-field
-                    label="Legal last name"
-                    persistent-hint
+                    label="Street Address"
+                    hint="Number and Street Name"
                     required
-                    v-model="lName"
+                    v-model="street"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
-                  <v-text-field label="Nickname"
-                                hint="everybody could see tickets by entering nickname"
+                  <v-text-field label="City"
+                                hint="City & State"
                                 required
-                                v-model="nName"
+                                v-model="city"
                                 ></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                  <v-text-field label="Email"
-                                hint="you will be informed by this email"
+                  <v-text-field label="Country"
+                                hint="Country"
                                 required
-                                v-model="eMail"></v-text-field>
+                                v-model="country"></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                  <v-text-field label="Address"
+                  <v-text-field label="Zip Code"
+                                hint="Zip"
                                 required
-                                v-model="Address"></v-text-field>
+                                v-model="zip"></v-text-field>
                 </v-col>
               </v-row>
             </v-container>
@@ -71,16 +73,18 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
+
   export default {
     name: 'v-cart-address-modal',
     data() {
       return {
           showAddressModal: false,
-          fName: '',
-          lName: '',
-          nName: '',
-          eMail: '',
-          Address: '',
+          name: '',
+          street: '',
+          city: '',
+          country: '',
+          zip: '',
           requiredhint: false,
       }
     },
@@ -93,23 +97,47 @@
       }
     },
     methods: {
-      toParent(method) {
-        const { fName, lName, nName, eMail, Address } = this;
+      ...mapActions(['GET_RECENT_ADDRESSES']),
 
-        if (fName && lName && nName && eMail && Address) {
+      toParent(method) {
+        const { name, street, city, country, zip } = this;
+
+        if (name && street && city && country && zip) {
           var usrData = {};
-          usrData['fName'] = fName;
-          usrData['lName'] = lName;
-          usrData['nName'] = nName;
-          usrData['eMail'] = eMail;
-          usrData['Address'] = Address;
+          usrData['name'] = name;
+          usrData['street'] = street;
+          usrData['city'] = city;
+          usrData['country'] = country;
+          usrData['zip'] = zip;
           this.showAddressModal = false;
           this.$emit(method, usrData)
         } else {
           this.requiredhint = true;
           return
         }
+      },
+
+      getRecentAddresses() {
+        this.GET_RECENT_ADDRESSES().then((addresses) => {
+          console.log(addresses);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       }
+    },
+    mounted() {
+      this.GET_RECENT_ADDRESSES().then((addresses) => {
+        console.log(addresses);
+        this.name = addresses['name'];
+        this.street = addresses['street'];
+        this.city = addresses['city'];
+        this.country = addresses['country'];
+        this.zip = addresses['zip'];
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     }
   }
 </script>

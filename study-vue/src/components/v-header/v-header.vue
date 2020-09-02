@@ -18,7 +18,6 @@
 
     <div class="v-header__auth-container" data-app>
       <vHeaderMenu
-        :nickname="this.$store.state.login"
         @toHeader="fromMenu"
         v-if="isAuthenticated"/>
       <vAuthRegister

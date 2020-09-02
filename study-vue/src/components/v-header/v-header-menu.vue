@@ -7,7 +7,7 @@
           dark
           v-bind="attrs"
           v-on="on">
-          Hello, {{ nickname }}
+          Hello, {{ $store.state.login }}
         </v-btn>
       </template>
       <v-list>
@@ -39,14 +39,6 @@ export default {
             title: 'Logout',
           },
         ],
-    }
-  },
-  props: {
-    nickname: {
-      type: String,
-      default() {
-        return "None"
-      }
     }
   },
   methods: {

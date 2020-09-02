@@ -1,7 +1,8 @@
 # study-vue
-## You need to start watching json-server for db.json
+
+## To start flask server
 ```
-json-server --watch db.json
+python3 flask_server/run.py
 ```
 
 

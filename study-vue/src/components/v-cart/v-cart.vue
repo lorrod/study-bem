@@ -29,7 +29,7 @@
 <script>
 import vCartItem from './v-cart-item.vue'
 import vCartAddressModal from './v-cart-address-modal.vue'
-import { mapMutations, mapGetters } from 'vuex'
+import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'v-cart',
@@ -54,6 +54,8 @@ export default {
   },
   methods: {
     ...mapMutations(['ADD_TO_CART', 'DELETE_FROM_CART']),
+    ...mapActions(['POST_ORDER']),
+
     addChild(data) {
       this.ADD_TO_CART(data)
     },
@@ -61,7 +63,7 @@ export default {
       this.DELETE_FROM_CART(data)
     },
     receiveUsrData(data) {
-      console.log(this.cartTotalCost);
+      this.POST_ORDER(data)
       console.log(data);
     }
   }

@@ -29,11 +29,11 @@
       </div>
       <div class="item__info-dynamic">
         <div class="count-btns">
-          <p class="v-item__count" v-if="checkCart(product_data.article)">Your tickets: {{ product_data.count }}</p>
+          <p class="v-item__count" v-if="checkCart(id)">Your tickets: {{ product_data.count }}</p>
           <v-btn fab dark color="indigo"
                   class="count-btns__add_to_cart btn"
                   @click="toParent('remove-article')"
-                  v-if="checkCart(product_data.article)"><v-icon dark>mdi-minus</v-icon></v-btn>
+                  v-if="checkCart(id)"><v-icon dark>mdi-minus</v-icon></v-btn>
           <v-btn fab dark color="indigo"
                   class="count-btns__add_to_cart btn"
                   @click="toParent('send-article')">
@@ -41,7 +41,7 @@
           </v-btn>
         </div>
         <div class="v-item__chances">
-          <v-app v-if="checkCart(product_data.article)">
+          <v-app v-if="checkCart(id)">
             <p>Chances to win:</p>
             <v-progress-linear
                 :value="this.product_data.count / this.product_data.total*100"
@@ -83,7 +83,7 @@
         this.$emit(method, this.product_data)
       },
       checkCart(article) {
-        return this.$store.state.cart.filter( item => item.article == article ).length
+        this.$store.state.cart.filter( item => item.article == article ).length
       }
     },
     mounted() {

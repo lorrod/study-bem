@@ -7,7 +7,7 @@
           width="500">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-          class="v-auth-login-modal__btn"
+          class="v-auth-register-modal__btn"
           color="primary"
           v-bind="attrs"
           dark
@@ -22,7 +22,7 @@
         <span class="headline">Create an Account</span>
       </v-card-title>
       <v-card-text>
-        <form class="login" @submit.prevent="register">
+        <form class="register" @submit.prevent="register">
           <v-container>
             <v-row>
               <v-col cols="12">
@@ -50,7 +50,7 @@
                   v-model="rep_password"
                   type="password"
                 ></v-text-field>
-                <small class="v-auth-login-modal__wrong-msg">{{ wrong_msg }}</small>
+                <small class="v-auth-register-modal__wrong-msg">{{ wrong_msg }}</small>
               </v-col>
             </v-row>
           </v-container>
@@ -68,7 +68,6 @@
 
 
 <script>
-//import vLogin from "./v-auth-login";
 
 export default {
   name: "vRegister",
@@ -93,7 +92,11 @@ export default {
     register: function() {
       const { username, password } = this;
       this.$store.dispatch("REGISTER_REQUEST", { username, password }).then(() => {
+
         this.modalRegister = false;
+
+      }).catch(error => {
+        this.wrong_msg = error.data.msg
       });
     },
     switchTo(page) {
@@ -103,8 +106,6 @@ export default {
   watch: {
     rep_password: function() {
       if (this.rep_password !== this.password) {
-        console.log(this.wrong_msg);
-        console.log("should chandge");
         this.wrong_msg = "Passwords doesn't match";
       } else {
         this.wrong_msg = "";
@@ -116,7 +117,7 @@ export default {
 
 
 <style lang="scss">
-  .v-auth-login-modal {
+  .v-auth-register-modal {
       &__btn {
         margin-right:$header-margin;
         margin-left:$header-margin;
