@@ -69,14 +69,47 @@ def products():
 	products = mongodb_query.get_products()
 	return jsonify(products), 200
 
-@jwt_required
+
 @app.route('/order', methods=['POST'])
+@jwt_required
 def order():
 	current_user = get_jwt_identity()
 	data = request.get_json()
+
+	#this check shouldn't be reached because of check this parameters on front-end
+	if not 'name' in data:
+		return jsonify({"msg": "Missing name parameter"}), 400
+	if not 'street' in data:
+		return jsonify({"msg": "Missing street parameter"}), 400
+	if not 'city' in data:
+		return jsonify({"msg": "Missing city parameter"}), 400
+	if not 'country' in data:
+		return jsonify({"msg": "Missing country parameter"}), 400
+	if not 'zip' in data:
+		return jsonify({"msg": "Missing zip parameter"}), 400
+	if not 'item' in data:
+		return jsonify({"msg": "Missing item parameter"}), 400
 	print(data)
+
+	payment_token = mongodb_query.new_order(current_user,
+									data['name'],
+									data['street'],
+									data['city'],
+									data['country'],
+									data['zip'],
+									data['item'])#dict
 	return jsonify(200)
 
+
+@app.route('/get-recent-address', methods=['GET'])
+@jwt_required
+def get_address():
+	current_user = get_jwt_identity()
+	address_info = mongodb_query.get_recent_address(current_user)
+	if address_info:
+		return jsonify(address_info), 200
+	else:
+		return jsonify(404)
 
 # ==========================================================================================
 # All functions for testing will be placed BELOW

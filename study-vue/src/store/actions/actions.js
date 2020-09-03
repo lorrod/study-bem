@@ -93,13 +93,16 @@ export default {
   },
   POST_ORDER({ commit, dispatch }, userdata) {
     return new Promise((resolve, reject) => {
-      commit("USER_ORDER");
+      userdata['item'] = JSON.parse(localStorage.getItem("cart"));
       axios("http://localhost:5000/order",{
         data: userdata,
         method: "POST"
       })
         .then(() => {
           commit('POSTED');
+          //push to payment page
+          this.cart = [],
+          this.count_items = 0,
           localStorage.removeItem("cart");
           localStorage.removeItem("count_items");
           resolve();
@@ -114,14 +117,27 @@ export default {
         })
     })
   },
-  GET_RECENT_ADDRESSES() {
+  GET_RECENT_ADDRESSES({ commit, dispatch }) {
     return new Promise((resolve) => {
-      var recent_addresses = {'name':'Pavel Mulin',
-                              'street': 'Babushkina 84',
-                              'city':'Saint-Petersburg',
-                              'country': 'Russia',
-                              'zip': '188480'}
-      resolve(recent_addresses)
+      axios("http://localhost:5000/get-recent-address",{
+        method: "GET"
+      })
+        .then((address) => {
+          resolve(address.data[0]);
+        })
+        .catch((error) => {
+          if (error.response.status == 401) {
+            commit("GET_ERROR", error);
+            router.push('/Auth');
+            dispatch('AUTH_LOGOUT');
+          } else if (error.response.status == 404) {
+            resolve({'name':'',
+                      'street': '',
+                      'city':'',
+                      'country': '',
+                      'zip': ''})
+          }
+        })
     })
   }
 }
