@@ -1,0 +1,66 @@
+<template>
+  <div class='v-auth-login-modal'>
+    <v-card v-click-outside="closeWindow">
+      <template v-if="showLogin === true" >
+        <!-- key указан, но перерендер  ?? -->
+        <vLogin
+          key="login-form"
+          button_name="Already have account?"
+          @registerPage="registerPage"/>
+      </template>
+      <template v-else>
+        <vRegister
+          key="register-form"
+          button_name="Have no account?"
+          @loginPage="loginPage"/>
+      </template>
+    </v-card>
+  </div>
+</template>
+
+
+<script>
+import vLogin from "./v-auth-login.vue";
+import vRegister from "./v-auth-register.vue";
+
+
+export default {
+  name: "vAuth",
+  data() {
+    return {
+      showLogin: true
+    }
+  },
+  components: {
+    vLogin,
+    vRegister
+  },
+  methods: {
+    closeWindow() {
+      this.showLogin = false;
+      console.log("sdfkmkwmsfweijfw");
+    },
+    registerPage() {
+      console.log("false");
+      this.showLogin = false;
+      console.log("false");
+    },
+    loginPage() {
+
+      console.log("tfalse");
+      this.showLogin = true;
+      console.log("true");
+    }
+  }
+};
+</script>
+
+
+<style>
+  .v-auth-login-modal {
+    position: fixed;
+    top: 20%;
+    left:20%;
+    right:20%
+  }
+</style>

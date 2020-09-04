@@ -31,7 +31,7 @@ def login():
 
 	# Identity can be any data that is json serializable
 	access_token = create_access_token(identity=username)
-	return jsonify(token=access_token), 200
+	return jsonify(token=access_token, username=username), 200
 
 
 @app.route('/register', methods=['POST'])
@@ -53,7 +53,7 @@ def register():
 		return jsonify({"msg": "Username is busy"}), 409
 	# Identity can be any data that is json serializable
 	access_token = create_access_token(identity=username)
-	return jsonify(token=access_token), 200
+	return jsonify(token=access_token, username=username), 200
 
 # Protect a view with jwt_required, which requires a valid access token
 # in the request to access.
@@ -76,7 +76,7 @@ def order():
 	current_user = get_jwt_identity()
 	data = request.get_json()
 
-	#this check shouldn't be reached because of check this parameters on front-end
+	#this check shouldn't be reached due to priviously checked this parameters on front-end
 	if not 'name' in data:
 		return jsonify({"msg": "Missing name parameter"}), 400
 	if not 'street' in data:
@@ -107,6 +107,7 @@ def get_address():
 	current_user = get_jwt_identity()
 	address_info = mongodb_query.get_recent_address(current_user)
 	if address_info:
+		print(address_info)
 		return jsonify(address_info), 200
 	else:
 		return jsonify(404)

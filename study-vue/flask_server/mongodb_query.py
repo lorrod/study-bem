@@ -16,6 +16,7 @@ def register_user(username, password):
 
 
 def get_product(product_article):
+	print(product_article)
 	product = list(mongo.db.items.find({"article":product_article}, { '_id': 0 }))
 	print(product)
 	if product:
