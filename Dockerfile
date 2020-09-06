@@ -6,6 +6,5 @@ COPY . .
 RUN npm run build
 
 # production stage
-FROM nginx:stable-alpine as production-stage
 EXPOSE 80
 CMD ["npm", "run", "start"]
