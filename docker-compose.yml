@@ -25,10 +25,10 @@ services:
     volumes:
       - ./flask-server:/usr/src/app/
 
-    nuxt-server:
-      build:
-        dockerfile: Dockerfile-nuxt
-        context: .
-      command: npm run start
-      volumes:
-        - ./study-nuxt:/usr/src/
+  nuxt-server:
+    build:
+      dockerfile: Dockerfile-nuxt
+      context: .
+    command: npm run start
+    volumes:
+      - ./study-nuxt:/usr/src/
