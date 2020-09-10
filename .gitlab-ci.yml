@@ -7,4 +7,4 @@ step-deploy-prod:
   stage: deploy
   script:
     - docker build -t study-nuxt .
-    - docker run -d -p 80:80 --rm todoapp --name todoapp study-nuxt
+    - docker run -d -p 80:80 --rm --name todoapp study-nuxt
