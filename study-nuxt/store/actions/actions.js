@@ -5,7 +5,7 @@ export default {
     return new Promise((resolve, reject) => {
       commit('REGISTER_REQUEST')
       axios({
-        url: 'http://127.0.0.1:5000/register',
+        url: 'http://flask-server:5000/register',
         data: user,
         method: 'POST',
       })
@@ -26,7 +26,7 @@ export default {
   AUTH_REQUEST({ commit }, user) {
     return new Promise((resolve, reject) => {
       commit('AUTH_REQUEST')
-      axios({ url: 'http://127.0.0.1:5000/login', data: user, method: 'POST' })
+      axios({ url: 'http://flask-server:5000/login', data: user, method: 'POST' })
         .then((resp) => {
           axios.defaults.headers.common.Authorization =
             'Bearer ' + resp.data.token
