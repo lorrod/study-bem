@@ -31,6 +31,8 @@ services:
     command: python run.py
     volumes:
       - ./flask-server:/usr/src/app/
+    ports:
+      - 5000:8443
 
   nuxt-server:
     build:

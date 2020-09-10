@@ -5,7 +5,7 @@ export default {
     return new Promise((resolve, reject) => {
       commit('REGISTER_REQUEST')
       axios({
-        url: 'http://flask-server:5000/register',
+        url: 'http://35.228.180.216:8443/register',
         data: user,
         method: 'POST',
       })
@@ -26,7 +26,7 @@ export default {
   AUTH_REQUEST({ commit }, user) {
     return new Promise((resolve, reject) => {
       commit('AUTH_REQUEST')
-      axios({ url: 'http://flask-server:5000/login', data: user, method: 'POST' })
+      axios({ url: 'http://35.228.180.216:8443/login', data: user, method: 'POST' })
         .then((resp) => {
           axios.defaults.headers.common.Authorization =
             'Bearer ' + resp.data.token
@@ -48,7 +48,7 @@ export default {
   },
   GET_PRODUCTS_FROM_API({ commit }) {
     return new Promise((resolve, reject) => {
-      axios('http://flask-server:5000/products', {
+      axios('http://35.228.180.216:8443/products', {
         method: 'GET',
       })
         .then((products) => {
@@ -66,7 +66,7 @@ export default {
       if (elem.length !== 0) {
         resolve(elem[0])
       }
-      axios('http://flask-server:5000/products?article=' + id, {
+      axios('http://35.228.180.216:8443/products?article=' + id, {
         method: 'GET',
       })
         .then((product) => {
@@ -87,7 +87,7 @@ export default {
   POST_ORDER({ commit, dispatch }, userdata) {
     return new Promise((resolve, reject) => {
       userdata.item = JSON.parse(localStorage.getItem('cart'))
-      axios('http://flask-server:5000/order', {
+      axios('http://35.228.180.216:8443/order', {
         data: userdata,
         method: 'POST',
       })
@@ -107,7 +107,7 @@ export default {
   },
   GET_RECENT_ADDRESSES({ commit, dispatch }) {
     return new Promise((resolve) => {
-      axios('http://flask-server:5000/get-recent-address', {
+      axios('http://35.228.180.216:8443/get-recent-address', {
         method: 'GET',
       })
         .then((address) => {
