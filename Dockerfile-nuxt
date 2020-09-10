@@ -1,6 +1,6 @@
 FROM node:lts-alpine as build-stage
 WORKDIR /usr/src/app
-COPY ./study-nuxt/ /usr/src/
+COPY ./study-nuxt/ /usr/src/app
 RUN npm install
 RUN npm run build
 

@@ -38,4 +38,4 @@ services:
       context: .
     command: npm run start
     volumes:
-      - ./study-nuxt:/usr/src/
+      - ./study-nuxt:/usr/src/app
