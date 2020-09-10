@@ -5,5 +5,5 @@ RUN npm install
 RUN npm run build
 
 # production stage
-EXPOSE 80
-CMD ["npm", "run", "start"]
+# EXPOSE 80
+# CMD ["npm", "run", "start"]
