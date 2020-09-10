@@ -48,7 +48,7 @@ export default {
   },
   GET_PRODUCTS_FROM_API({ commit }) {
     return new Promise((resolve, reject) => {
-      axios('http://localhost:5000/products', {
+      axios('http://flask-server:5000/products', {
         method: 'GET',
       })
         .then((products) => {
@@ -66,7 +66,7 @@ export default {
       if (elem.length !== 0) {
         resolve(elem[0])
       }
-      axios('http://localhost:5000/products?article=' + id, {
+      axios('http://flask-server:5000/products?article=' + id, {
         method: 'GET',
       })
         .then((product) => {
@@ -87,7 +87,7 @@ export default {
   POST_ORDER({ commit, dispatch }, userdata) {
     return new Promise((resolve, reject) => {
       userdata.item = JSON.parse(localStorage.getItem('cart'))
-      axios('http://localhost:5000/order', {
+      axios('http://flask-server:5000/order', {
         data: userdata,
         method: 'POST',
       })
@@ -107,7 +107,7 @@ export default {
   },
   GET_RECENT_ADDRESSES({ commit, dispatch }) {
     return new Promise((resolve) => {
-      axios('http://localhost:5000/get-recent-address', {
+      axios('http://flask-server:5000/get-recent-address', {
         method: 'GET',
       })
         .then((address) => {
