@@ -2,8 +2,7 @@ FROM node:lts-alpine as build-stage
 WORKDIR /usr/src/app
 COPY ./study-nuxt/package*.json /usr/src/
 RUN npm install
-COPY . .
-RUN cd study-nuxt
+COPY ./study-nuxt .
 RUN npm run build
 
 # production stage
